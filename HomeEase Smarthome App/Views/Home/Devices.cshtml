@@ -1,0 +1,83 @@
+﻿<div id="main-content">
+@{
+    ViewData["Title"] = "Devices";
+}
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=768, height=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@ViewData["Title"] - HomeEase_Smarthome_App</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <h2 class="devices-header">All Devices</h2>
+    <div class="device container mt-5">
+        <div class="row">
+            <!-- Square 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="square">
+                    <h5>Bedroom Lights</h5>
+                    <p class="icon"><i class="fa-regular fa-lightbulb"></i></p>
+                    <label class="switch">
+                        <input type="checkbox" id="bedroomLights">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- Square 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="square">
+                    <h5>TV</h5>
+                    <p class="icon"><i class="fa-solid fa-tv"></i></p>
+                    <label class="switch">
+                        <input type="checkbox" id="tv">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Square 3 -->
+            @{
+                // Initial state for the door lock
+                bool isDoorLocked = false; // Default state
+            }
+            <div class="col-md-6 mb-4">
+                <div class="square">
+                    <h5>Door Locks</h5>
+                    <!-- Dynamic icon -->
+                    <p>
+                        <i class="fa-solid @(isDoorLocked ? "fa-door-closed" : "fa-door-open") door-icon" id="doorIcon"></i>
+                    </p>
+
+                    <!-- Switch with 'door' class -->
+                    <label class="switch door">
+                        <input type="checkbox" id="doorToggle" @(isDoorLocked ? "checked" : "")>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- Square 4 -->
+            <div class="col-md-6 mb-4">
+                <div class="square">
+                    <h5>Fans</h5>
+                    <p class="icon"><i class="fa-solid fa-fan"></i></p>
+                    <label class="switch">
+                        <input type="checkbox" id="fans">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js" defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
