@@ -12,20 +12,13 @@
    @*  <link rel="stylesheet" href="~/HomeEase_Smarthome_App.styles.css" asp-append-version="true" /> *@
 </head>
 <body>
-    
-    <!-- Splash Screen HTML -->
-    <div id="splash-screen">
-        <div class="logo">
-            @* <img src="~/images/pexels-binyaminmellish-106399.jpg" alt="Splash Image"> *@
-            <h1>HomeEase</h1>
-        </div>
-    </div>
     <header>
         <!-- Use flexbox to align items on the same row -->
         <div class="header-content">
+            @* <div class="time">@DateTime.Now.ToString("hh:mm tt")</div> *@
             <div class="welcome">
                 <h5 class="welcome-home">Welcome home,</h5>
-                <h4 class="user-welcome">User!</h4>
+                <h4 class="user-welcome">Grandpa Joe!</h4>
             </div>
             <!-- Profile Photo in the right corner -->
             <div class="profile-photo">
@@ -35,7 +28,7 @@
         <div class="nav-buttons">
             <a href="@Url.Action("Devices", "Home")"
                class="btn devicesbtn @(ViewData["Title"] as string == "Devices" ? "btn-success" : "btn-outline-primary")">Devices</a>
-            <a href="@Url.Action("Reminders", "Home")"
+            <a href="@Url.Action("Reminders", "Reminders")"
                class="btn reminderbtn @(ViewData["Title"] as string == "Reminders" ? "btn-success" : "btn-outline-primary")">Reminders</a>
             <a href="@Url.Action("Alarms", "Home")"
                class="btn reminderbtn @(ViewData["Title"] as string == "Alarms" ? "btn-success" : "btn-outline-primary")">Alarms</a>

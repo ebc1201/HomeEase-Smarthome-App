@@ -13,6 +13,13 @@ namespace HomeEase_Smarthome_App.Controllers
             _logger = logger;
         }
 
+        public IActionResult splash()
+        {
+            ViewData["Title"] = "Splash";
+            return View();
+        }
+
+
         public IActionResult Devices()
         {
             ViewData["Title"] = "Devices";
@@ -23,12 +30,6 @@ namespace HomeEase_Smarthome_App.Controllers
         public IActionResult Voice()
         {
             ViewData["Title"] = "Voice";
-            return View();
-        }
-
-        public IActionResult Reminders()
-        {
-            ViewData["Title"] = "Reminders";
             return View();
         }
 

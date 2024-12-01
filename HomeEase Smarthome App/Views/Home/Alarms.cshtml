@@ -6,12 +6,128 @@
     <title>@ViewData["Title"] - HomeEase_Smarthome_App</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div class="alarms-container">
+    <h2 class="alarms-header">Alerts & Alarms</h2>
+    <div class="alarms-container container mt-5">
+        <div class="row">
+            <!-- Fall Detection -->
+            <div class="col-md-6 mb-4">
+                <div class="square">
+                    <h5>Fall Detection</h5>
+                    <p class="icon"><i class="fa-solid fa-person-falling"></i></p>
+                   
+                    <label class="switch">
+                        <input type="checkbox" id="fallDetection">
+                        <span class="a-slider"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- Danger Contact Help -->
+            <div class="col-md-6 mb-4">
+
+                <div class="square">
+                    <h5>Danger Contact Help</h5>
+                    <button class="get-help" id="getHelpButton"><p class="icon"><i class="fa-solid fa-phone" style="color:red;"></i></p></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Fire Alarm -->
+            <div class="col-md-6 mb-4">
+                <div class="square">
+                    <h5>Fire Alarm</h5>
+                    <p class="icon"><i class="fa-solid fa-fire"></i></p>
+                   
+                    <label class="switch">
+                        <input type="checkbox" id="fireAlarm">
+                        <span class="a-slider"></span>
+                    </label>
+                </div>
+            </div>
+            <!-- Door Alarm -->
+            <div class="col-md-6 mb-4">
+                <div class="square">
+                    <h5>Door Alarm</h5>
+                    <p class="icon"><i class="fa-solid fa-door-closed"></i></p>
+                  
+                    <label class="switch">
+                        <input type="checkbox" id="doorAlarm">
+                        <span class="a-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
     </div>
+    <div class="nav-buttons mt-5">
+        <a href="" class="btn btn-primary">Add Alarm/Alert</a>
+    </div>
+    <script>
+        // Load saved states from Local Storage
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fall Detection
+            const fallDetection = document.getElementById('fallDetection');
+            const savedFallDetection = localStorage.getItem('fallDetection');
+            if (savedFallDetection === 'true') {
+                fallDetection.checked = true;
+            }
+
+            // Fire Alarm
+            const fireAlarm = document.getElementById('fireAlarm');
+            const savedFireAlarm = localStorage.getItem('fireAlarm');
+            if (savedFireAlarm === 'true') {
+                fireAlarm.checked = true;
+            }
+
+            // Door Alarm
+            const doorAlarm = document.getElementById('doorAlarm');
+            const doorAlarmIcon = document.getElementById('doorAlarmIcon');
+            const savedDoorAlarm = localStorage.getItem('doorAlarm');
+            if (savedDoorAlarm === 'true') {
+                doorAlarm.checked = true;
+                doorAlarmIcon.classList.replace('fa-door-closed', 'fa-door-open');
+            } else {
+                doorAlarm.checked = false;
+                doorAlarmIcon.classList.replace('fa-door-open', 'fa-door-closed');
+            }
+        });
+
+        // Save state to Local Storage when a toggle is changed
+        document.getElementById('fallDetection').addEventListener('change', function () {
+            localStorage.setItem('fallDetection', this.checked);
+        });
+
+        document.getElementById('fireAlarm').addEventListener('change', function () {
+            localStorage.setItem('fireAlarm', this.checked);
+        });
+
+        document.getElementById('doorAlarm').addEventListener('change', function () {
+            localStorage.setItem('doorAlarm', this.checked);
+
+            // Update door icon dynamically based on the state
+            const doorAlarmIcon = document.getElementById('doorAlarmIcon');
+            if (this.checked) {
+                doorAlarmIcon.classList.replace('fa-door-closed', 'fa-door-open');
+            } else {
+                doorAlarmIcon.classList.replace('fa-door-open', 'fa-door-closed');
+            }
+        });
+
+
+            document.getElementById("getHelpButton").addEventListener("click", function () {
+            const confirmCall = confirm("Are you sure you want to make the call?");
+            if (confirmCall) {
+                alert("Calling emergency services...");
+                // Place the call or trigger the appropriate action here.
+            } else {
+                alert("Call canceled.");
+            }
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="~/lib/jquery/dist/jquery.min.js" defer></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -1,0 +1,166 @@
+﻿@{
+    ViewData["Title"] = "Reminders";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=768, height=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@ViewData["Title"] - HomeEase_Smarthome_App</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Reminders</h2>
+        <form method="post">
+            <div class="list-group">
+
+                <!-- Medication Category -->
+                <h4 class="mt-4">Medication <i class="fa-solid fa-pills"></i></h4>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Morning Medication</strong><br />
+                        <small>2024-12-01 08:00 AM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-1" />
+                    </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Medication Refill Reminder</strong><br />
+                        <small>2024-12-05 09:00 AM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-6" />
+                    </div>
+                </div>
+
+                <!-- Appointments Category -->
+                <h4 class="mt-4">Appointments <i class="fa-regular fa-calendar"></i></h4>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Follow-up Appointment with Cardiologist</strong><br />
+                        <small>2024-12-02 10:30 AM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-2" />
+                    </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Physical Therapy Session</strong><br />
+                        <small>2024-12-06 11:00 AM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-7" />
+                    </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Doctor Check-Up for Annual Exam</strong><br />
+                        <small>2024-12-10 09:00 AM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-10" />
+                    </div>
+                </div>
+
+                <!-- Meals & Liquids Category -->
+                <h4 class="mt-4">Meals & Liquids <i class="fa-solid fa-pizza-slice"></i> <i class="fa-solid fa-glass-water"></i></h4>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Lunch Reminder</strong><br />
+                        <small>2024-12-03 12:30 PM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-3" />
+                    </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Hydration Alert</strong><br />
+                        <small>2024-12-03 03:00 PM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-4" />
+                    </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Dinner Reminder</strong><br />
+                        <small>2024-12-06 07:00 PM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-8" />
+                    </div>
+                </div>
+
+                <!-- Exercise Category -->
+                <h4 class="mt-4">Exercise <i class="fa-solid fa-dumbbell"></i></h4>
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Evening Walk</strong><br />
+                        <small>2024-12-03 06:00 PM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-5" />
+                    </div>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>Morning Yoga</strong><br />
+                        <small>2024-12-07 06:00 AM</small>
+                    </div>
+                    <div>
+                        <input type="checkbox" class="reminder-checkbox" id="reminder-9" />
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="nav-buttons mt-5">
+                <a href="@Url.Action("Create", "Reminders")" class="btn btn-primary">Add Reminder</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Script to keep checkboxes checked -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get all checkboxes
+            const checkboxes = document.querySelectorAll('.reminder-checkbox');
+
+            // Restore checked state from localStorage
+            checkboxes.forEach(checkbox => {
+                const reminderId = checkbox.id;
+                const isChecked = localStorage.getItem(reminderId) === 'true';
+
+                // Set the checkbox state
+                checkbox.checked = isChecked;
+
+                // Event listener to save checked state when the checkbox is changed
+                checkbox.addEventListener('change', function () {
+                    localStorage.setItem(reminderId, checkbox.checked);
+                });
+            });
+        });
+    </script>
+
+    <!-- Font Awesome for icons if needed -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

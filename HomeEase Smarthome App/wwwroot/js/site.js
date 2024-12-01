@@ -1,26 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-document.addEventListener('DOMContentLoaded', function () {
-    // You can toggle testMode to true to bypass the localStorage check during testing
-    var testMode = true;  // Set this to true to test splash screen every time
-
-    if (testMode || !localStorage.getItem('splashScreenShown')) {
-        // Show splash screen and set the localStorage flag
-        setTimeout(() => {
-            document.body.classList.add('loaded'); // Show main content
-            document.getElementById('splash-screen').style.display = 'none'; // Hide splash screen
-            localStorage.setItem('splashScreenShown', 'true'); // Mark splash screen as shown
-        }, 5000); // 3-second splash screen duration
-    } else {
-        // Directly show the main content if the splash has already been shown
-        document.getElementById('splash-screen').style.display = 'none';
-        document.body.classList.add('loaded'); // Show main content immediately
-    }
-});
-
-
+﻿
 
 // JavaScript function to toggle the door icon
 function toggleDoorState(checkbox) {
@@ -168,3 +146,4 @@ if (annyang) {
 } else {
     alert('Voice recognition is not supported in this browser.');
 }
+

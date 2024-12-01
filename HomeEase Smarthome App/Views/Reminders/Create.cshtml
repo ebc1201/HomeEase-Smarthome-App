@@ -1,0 +1,56 @@
+﻿@using HomeEase_Smarthome_App.Models
+@model IEnumerable<HomeEase_Smarthome_App.Models.ReminderDbo>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=768, height=1024, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@ViewData["Title"] - Create</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js"></script>
+</head>
+<body>
+    <div class="reminders-container">
+        <div class="container mt-5">
+            <!-- Header Section -->
+            <div class="reminders-header">
+                <h2 class="title">Add New Reminder</h2>
+            </div>
+
+            <!-- Add Reminder Form -->
+            <div class="section mt-4">
+                <h3><i class="fa-solid fa-plus"></i> New Reminder</h3>
+                <form method="post" action="@Url.Action("Create", "Reminders")">
+                    <div class="mb-3">
+                        <label for="ReminderTitle" class="form-label">Reminder Title</label>
+                        <input type="text" class="form-control" id="ReminderTitle" name="Title" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="ReminderCategory" class="form-label">Category</label>
+                        <select class="form-select" id="ReminderCategory" name="Category" required>
+                            @foreach (var category in Enum.GetValues(typeof(ReminderCategory)))
+                            {
+                                <option value="@category">@category</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ReminderDateTime" class="form-label">Reminder Time</label>
+                        <input type="datetime-local" class="form-control" id="ReminderDateTime" name="ReminderDateTime" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Reminder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js" defer></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

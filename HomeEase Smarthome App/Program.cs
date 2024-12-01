@@ -1,8 +1,18 @@
+using HomeEase_Smarthome_App.Data;
+using Microsoft.EntityFrameworkCore;
+using HomeEase_Smarthome_App.Models;
+using HomeEase_Smarthome_App.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddDbContext<HomeEaseDbContext>(options =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    options.UseSqlServer(connectionString);
+});
+builder.Services.AddScoped<IReminderService, ReminderService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +32,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Devices}/{id?}");
+    pattern: "{controller=Home}/{action=splash}/{id?}");
 
 app.Run();
