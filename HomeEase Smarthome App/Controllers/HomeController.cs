@@ -27,9 +27,9 @@ namespace HomeEase_Smarthome_App.Controllers
         }
 
 
-        public IActionResult Voice()
+        public IActionResult Account()
         {
-            ViewData["Title"] = "Voice";
+            ViewData["Title"] = "Account";
             return View();
         }
 
